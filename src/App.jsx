@@ -1,11 +1,21 @@
+import CardItem from './components/CardItem'
+import Header from './components/header'
+
 function App() {
-  return (
-    <div className="App">
-      <div>
-        <h1>ABLAZE - Shop</h1>
+
+    const products = [{
+        id: 1,
+        name: 'Ablaze Tee 1'
+    }]
+
+    return (
+        <div className="App">
+            <Header />
+            {products.map(item => (
+                <CardItem product={item} />
+            ))}
         </div>
-    </div>
-  )
+    )
 }
 
 export default App
