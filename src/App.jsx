@@ -1,19 +1,12 @@
-import CardItem from './components/CardItem'
 import Header from './components/header'
+import ProductList from './components/product-list';
 
 function App() {
-
-    const products = [{
-        id: 1,
-        name: 'Ablaze Tee 1'
-    }]
-
     return (
         <div className="App">
             <Header />
-            {products.map(item => (
-                <CardItem product={item} />
-            ))}
+
+            <ProductList />
         </div>
     )
 }

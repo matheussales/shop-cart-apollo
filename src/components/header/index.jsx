@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, Heading, Icon } from "@chakra-ui/react"
-import { MdOutlineShoppingCart } from 'react-icons/md'
+import Cart from "../cart";
 
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
                 <Flex h="20" alignItems={"center"} justifyContent={"space-around"}>
                     <Heading as="h3">ABLAZE - Shop</Heading>
 
-                    <Icon as={MdOutlineShoppingCart} w={8} h={8}></Icon>
+                    <Cart />
                 </Flex>
             </Box>
             <Divider />
