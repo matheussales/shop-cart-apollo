@@ -47,8 +47,9 @@ const Cart = () => {
                     top: "-10px"
                 }}
                 cursor="pointer"
+                ref={btnRef}
             >
-                <Icon as={MdShoppingCart} w={9} h={9} ref={btnRef} onClick={onOpen} />
+                <Icon as={MdShoppingCart} w={9} h={9} onClick={onOpen} />
             </Box>
             <Drawer
                 isOpen={isOpen}
@@ -65,28 +66,26 @@ const Cart = () => {
                         <VStack align={"flex-start"}>
 
                             {data?.cart?.products.map(product => (
-                                <>
-                                    <Box boxSize={"inherit"} key={product.id} overflow='hidden'>
-                                        <HStack align={"center"} justifyContent={"center"} padding="4">
-                                            <Box>
-                                                <Image w src={"https://www.ablazenation.com/produtos/emblem-tee-1.jpg"} />
-                                            </Box>
-                                            <VStack>
-                                                <Text as='b'>{product.name}</Text>
-                                                <Text as='b'>R$ {product.price}</Text>
-                                                <Button
-                                                    onClick={() => { removeFromCart({ variables: { product } }) }}
-                                                    bg="black"
-                                                    color="white"
-                                                    borderRadius="0"
-                                                >
-                                                    Remover
-                                                </Button>
-                                            </VStack>
-                                        </HStack>
-                                    </Box>
+                                <Box boxSize={"inherit"} key={product.id} overflow='hidden'>
+                                    <HStack align={"center"} justifyContent={"center"} padding="4">
+                                        <Box>
+                                            <Image w src={"https://www.ablazenation.com/produtos/emblem-tee-1.jpg"} />
+                                        </Box>
+                                        <VStack>
+                                            <Text as='b'>{product.name}</Text>
+                                            <Text as='b'>R$ {product.price}</Text>
+                                            <Button
+                                                onClick={() => { removeFromCart({ variables: { product } }) }}
+                                                bg="black"
+                                                color="white"
+                                                borderRadius="0"
+                                            >
+                                                Remover
+                                            </Button>
+                                        </VStack>
+                                    </HStack>
                                     <Divider />
-                                </>
+                                </Box>
                             ))}
                             <Text as='b'>Total: R$ {data?.cart?.totalPrice}</Text>
                         </VStack>

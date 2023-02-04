@@ -67,8 +67,7 @@ const resolvers = {
     },
     Cart: {
         totalPrice: (cart, _args, { cache }) => {
-            console.log("calculando???")
-            return 0;
+            return cart.products.reduce((total, product) => total + product.price, 0);
         }
     },
     Product: {
@@ -87,7 +86,6 @@ const resolvers = {
             `;
 
             const { cart } = cache.readQuery({ query: GET_CART })
-            console.log(cart.products.find(item => product.id === item.id));
 
             return Boolean(cart.products.find(item => product.id === item.id));
         }
@@ -117,11 +115,9 @@ const resolvers = {
                 }
             };
 
-            console.log(data);
-
             cache.writeQuery({ query: GET_PRODUCTS_FROM_CART_QUERY, data })
 
-            return data;
+            return { ...data.cart };;
         },
         removeFromCart: (_root, { product: removedProduct }, { cache }) => {
             cache.modify({
@@ -148,7 +144,7 @@ const resolvers = {
 
             cache.writeQuery({ query: GET_PRODUCTS_FROM_CART_QUERY, data })
 
-            return data;
+            return { ...data.cart };
         }
     }
 }
