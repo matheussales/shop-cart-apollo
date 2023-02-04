@@ -1,10 +1,10 @@
 import { useMutation } from "@apollo/client"
-import { Box, Icon, Image, HStack, Text, VStack } from "@chakra-ui/react"
+import { Box, Icon, Image, HStack, Text, VStack, Button } from "@chakra-ui/react"
 import { MdOutlineAddCircle, MdOutlineRemoveCircle } from 'react-icons/md'
 import { ADD_TO_CART_QUERY, REMOVE_FROM_CART_QUERY } from '../../client-schema/mutations/cart';
 
 const CardItem = ({ product }) => {
-    const [addToCart] = useMutation(ADD_TO_CART_QUERY)
+    const [addToCart, { loading }] = useMutation(ADD_TO_CART_QUERY)
     const [removeFromCart] = useMutation(REMOVE_FROM_CART_QUERY)
 
     const handleCart = (product) => {
@@ -16,10 +16,10 @@ const CardItem = ({ product }) => {
     }
 
     return (
-        <Box cursor="pointer">
+        <Box >
             <Image
                 src="https://www.ablazenation.com/produtos/emblem-tee-1.jpg"
-                title="Smiley face"
+                title="Ablaze tee"
             />
             <HStack p='6' justifyContent={"space-between"}>
                 <VStack align="start">
@@ -29,9 +29,12 @@ const CardItem = ({ product }) => {
                     as={product.isInCart ? MdOutlineRemoveCircle : MdOutlineAddCircle}
                     w={8}
                     h={8}
-                    color={product.isInCart ? 'red.500' : 'green.500'}
-                    onClick={() => handleCart(product)} />
+                    color="black"
+                    onClick={() => handleCart(product)}
+                    cursor="pointer"
+                />
             </HStack>
+
         </Box>
     )
 }
